@@ -443,8 +443,6 @@
         console.log(`team changed from ${oldValue} to ${value}`);
         localStorage.setItem("teamNumber", value);
 
-        tba.defaults.headers.common['X-TBA-Auth-Key'] = value;
-
         // load the list of events for this year
         // used for the event dropdown
         tba.get(`/events/${new Date().getFullYear()}`).then((res) => {
