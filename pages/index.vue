@@ -80,7 +80,7 @@
                       <br>
                       <small>{{getRanking(nextMatch.alliances.red.team_keys[idx-1])}}</small>
                     </td>
-                    <td :class="{'bg-primary': isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">
+                    <td :class="{'bg-primary': isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">
                       <span :class="{myteam: isMyTeam(nextMatch.alliances.blue.team_keys[idx-1]), 'bg-primary': isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">{{nextMatch.alliances.blue.team_keys[idx-1].replace('frc','').trim()}}</span>
                       <br>
                       <small>{{getRanking(nextMatch.alliances.blue.team_keys[idx-1])}}</small>
