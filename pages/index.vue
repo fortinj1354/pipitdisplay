@@ -27,11 +27,11 @@
                 <td>{{formatTime(match.time)}} / {{formatTime(match.predicted_time)}} / {{formatTime(match.actual_time)}}</td>
                 <td
                   v-for="team in match.alliances.red.team_keys"
-                  :class="{myteam bg-danger: isMyTeam(team)}"
+                  :class="{myteam: isMyTeam(team), 'bg-danger': isMyTeam(team)}"
                   >{{team.replace('frc','')}}</td>
                 <td
                   v-for="team in match.alliances.blue.team_keys"
-                  :class="{myteam bg-primary: isMyTeam(team)}"
+                  :class="{myteam: isMyTeam(team), 'bg-primary': isMyTeam(team)}"
                   >{{team.replace('frc','')}}</td>
   
                 <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}">{{calcStatus(match)}}</td>
