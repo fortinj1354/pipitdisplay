@@ -1,7 +1,7 @@
 <template>
   <div class="container-fluid px-5 py-4">
   <div class="fb-header">
-    <h1 style="font-size: 5rem">Walton Robotics | 2974</h1>
+    <h1 class="text-center" style="font-size: 5rem">Walton Robotics Team 2974</h1>
     <img src="~/assets/wrtlogo.png" style="height: 128px" />
   </div>
     <div class="row">
@@ -490,6 +490,6 @@
   	flex-wrap: nowrap;
   	justify-content: space-evenly;
   	align-items: baseline;
-  	align-content: stretch;
+  	align-content: center;
   }
 </style>
