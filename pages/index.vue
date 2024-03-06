@@ -127,9 +127,6 @@
         Event:
         <b-form-select v-model="event" :options="eventOptions"></b-form-select>
       </div>
-      <div class="col-3 text-center">
-        Last Updated: <br> {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}}
-      </div>
     </div>
 
   </div>
