@@ -120,7 +120,8 @@
       </div>
     </div>
 
-   
+    <br />
+    <br />
 
     <!-- Data Input -->
     <div class="row text-muted">
