@@ -41,7 +41,7 @@
           <span class="text-muted">
             Last Updated: {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}} <br />
             Data powered by The Blue Alliance API <br />
-            Dashboard written by TechplexEngineer on GitHub with FRC Team 4909 with modifications by FRC Team 2974
+            Original dashboard written by FRC Team 4909 - TechplexEngineer/pipitdisplay on GitHub
           </span>
         </div>
   
