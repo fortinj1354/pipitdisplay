@@ -463,7 +463,8 @@
   }
 
   .table td {
-    padding: 0.5rem 0.75rem 0.5rem 0.75rem
+    padding: 0.5rem 0.75rem;
+    vertical-align: middle;
   }
 
   .myteam {
