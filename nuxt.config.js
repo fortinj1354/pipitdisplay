@@ -63,10 +63,12 @@ export default {
       useWebmanifestExtension: false
     }
   },
-
-  runtimeConfig: {
-    public: {
-      tbaApiKey: process.env.NUXT_TBA_API_KEY || ''
-    }
+  
+  export default defineNuxtConfig({
+    runtimeConfig: {
+      public: {
+        tbaApiKey: process.env.NUXT_TBA_API_KEY || ''
+      }
+    }  
   }
 }
