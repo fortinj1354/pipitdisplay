@@ -38,6 +38,7 @@
               </tr>
             </tbody>
           </table>
+          Last Updated: <br> {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}}
         </div>
   
         <div class="col-lg-12 col-xl-4">
@@ -129,13 +130,6 @@
       <div class="col-3 text-center">
         Last Updated: <br> {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}}
       </div>
-
-      <div class="d-block d-sm-none">xs</div>
-      <div class="d-none d-sm-block d-md-none">sm</div>
-      <div class="d-none d-md-block d-lg-none">md</div>
-      <div class="d-none d-lg-block d-xl-none">lg</div>
-      <div class="d-none d-xl-block d-xxl-none">xl</div>
-      <div class="d-none d-xxl-block">xxl</div>
     </div>
 
   </div>
