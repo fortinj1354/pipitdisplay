@@ -76,12 +76,12 @@
                 <tbody class="text-center rounded-bottom">
                   <tr v-if="'alliances' in nextMatch" v-for="idx in 3">
                     <td>
-                      <span :class="{myteam: isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">{{nextMatch.alliances.red.team_keys[idx-1].replace('frc', '').trim()}}</span>
+                      <span :class="{myteam: isMyTeam(nextMatch.alliances.red.team_keys[idx-1]), 'bg-danger': isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">{{nextMatch.alliances.red.team_keys[idx-1].replace('frc', '').trim()}}</span>
                       <br>
                       <small>{{getRanking(nextMatch.alliances.red.team_keys[idx-1])}}</small>
                     </td>
                     <td>
-                      <span :class="{myteam: isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">{{nextMatch.alliances.blue.team_keys[idx-1].replace('frc','').trim()}}</span>
+                      <span :class="{myteam: isMyTeam(nextMatch.alliances.blue.team_keys[idx-1]), 'bg-primary': isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">{{nextMatch.alliances.blue.team_keys[idx-1].replace('frc','').trim()}}</span>
                       <br>
                       <small>{{getRanking(nextMatch.alliances.blue.team_keys[idx-1])}}</small>
                     </td>
