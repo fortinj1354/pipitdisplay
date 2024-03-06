@@ -142,6 +142,8 @@
   import moment from 'moment';
   import tba from '~/plugins/tba.js';
 
+  const config = useRuntimeConfig();
+
   // from https://codeburst.io/throttling-and-debouncing-in-javascript-b01cad5c8edf
   // https://stackoverflow.com/questions/45178621/how-to-correctly-use-vue-js-watch-with-lodash-debounce
   const debounce = (func, delayms) => {
@@ -188,6 +190,7 @@
         this.event = localStorage.getItem("eventKey") || "2024scand";
       }
 
+      console.log("API Key: " + config.public.tbaApiKey);
       tba.defaults.headers.common['X-TBA-Auth-Key'] = this.tba_key;
 
       updateHandle = setInterval(this.updateData, 10*1000);
