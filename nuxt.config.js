@@ -62,7 +62,7 @@ export default {
       lang: 'en-us',
       useWebmanifestExtension: false
     }
-  }
+  },
 
   runtimeConfig: {
     public: {
