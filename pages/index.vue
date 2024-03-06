@@ -15,7 +15,7 @@
             <thead>
               <tr>
                 <th class="bg-secondary">Match</th>
-                <th class="bg-secondary">Time <small>(scheduled / predicted / acutal)</small></th>
+                <th class="bg-secondary">Time <small>(scheduled / predicted / actual)</small></th>
                 <th colspan="3" class="font-weight-bold bg-danger">Red</th>
                 <th colspan="3" class="font-weight-bold bg-primary">Blue</th>
                 <th colspan="3" class="bg-secondary">Status</th>
