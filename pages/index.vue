@@ -1,9 +1,11 @@
 <template>
-  <div class="container-fluid px-5 py-4">
-  <div class="fb-header">
-    <h1 class="text-center" style="font-size: 5rem">Walton Robotics Team 2974</h1>
-    <img src="~/assets/wrtlogo.png" style="height: 128px" />
+  <div style="background: grey;padding-bottom: 20px;padding-top: 20px;">
+    <div class="fb-header">
+      <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1> 
+      <img src="/_nuxt/img/wrtlogo.png" style="height: 128px;">
+    </div>
   </div>
+  <div class="container-fluid px-5 py-4">
     <div class="row">
 
       <div class="col-lg-12 col-xl-8">
@@ -489,7 +491,7 @@
   	flex-direction: row;
   	flex-wrap: nowrap;
   	justify-content: space-evenly;
-  	align-items: baseline;
+  	align-items: center;
   	align-content: center;
   }
 </style>
