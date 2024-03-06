@@ -1,9 +1,9 @@
 <template>
   <div class="container-fluid px-5 py-4">
-  <span class="text-center">
+  <div class="fb-header">
     <h1 style="font-size: 5rem">Walton Robotics | 2974</h1>
-    <img src="~/assets/wrtlogo.png" />
-  </span>
+    <img src="~/assets/wrtlogo.png" style="height: 128px" />
+  </div>
     <div class="row">
 
       <div class="col-lg-12 col-xl-8">
@@ -482,5 +482,14 @@
     font-weight: bold;
     text-decoration: underline;
     font-size: 125%;
+  }
+
+  .fb-header {
+  	display: flex;
+  	flex-direction: row;
+  	flex-wrap: nowrap;
+  	justify-content: space-evenly;
+  	align-items: baseline;
+  	align-content: stretch;
   }
 </style>
