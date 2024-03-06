@@ -164,7 +164,6 @@
       return {
         team      : null,
         event     : null,
-        tba_key   : "XlGpSFzNPoEawzqx6nc5oJDmY5Cld4WZGRNQwZGXpYfiHWhsAu5IyYzes3S4lyNT",
         rankings  : [],
         nextMatch : {},
         matches   : [],
@@ -188,8 +187,7 @@
         this.event = localStorage.getItem("eventKey") || "2024scand";
       }
 
-      console.log("API Key: " + this.$config.tbaApiKey);
-      tba.defaults.headers.common['X-TBA-Auth-Key'] = this.tba_key;
+      tba.defaults.headers.common['X-TBA-Auth-Key'] = this.$config.tbaApiKey;
 
       updateHandle = setInterval(this.updateData, 10*1000);
     },
@@ -292,8 +290,8 @@
       },
       updateData: debounce(function() {
         console.log("refresh data");
-        if (!this.event || !this.tba_key) {
-          console.log(`Missing required info: event:${this.event} key:${this.tba_key}`);
+        if (!this.event) {
+          console.log(`Missing required info: event:${this.event}`);
           return;
         }
         let team = this.team;
