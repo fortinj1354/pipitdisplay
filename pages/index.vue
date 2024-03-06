@@ -105,7 +105,7 @@
                   </tr>
                 </thead>
                 <tbody class="text-center rounded-bottom">
-                  <tr  v-for="team in rankings.slice(0,8)">
+                  <tr v-for="team in rankings.slice(0,8)" :class="{'bg-danger': isMyTeam(team.team_key)}">
                     <td>{{team.rank}}</td>
                     <td :class="{myteam: isMyTeam(team.team_key)}">{{team.team_key.replace('frc', '')}}</td>
                     <td>{{team.sort_orders[0]}}</td>
