@@ -1,6 +1,6 @@
 <template>
   <div class="container-fluid px-5 py-4">
-  <h2 class="text-center">TEST TEXT</h2>
+  <h1 class="text-center">TEST TEXT</h1>
     <div class="row">
 
       <div class="col-lg-12 col-xl-8">
