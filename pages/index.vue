@@ -38,7 +38,11 @@
               </tr>
             </tbody>
           </table>
-          Last Updated: <br> {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}}
+          <span class="text-muted">
+            Last Updated: {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}}
+            Data powered by The Blue Alliance API
+            Dashboard written by TechplexEngineer on GitHub
+          </span>
         </div>
   
         <div class="col-lg-12 col-xl-4">
