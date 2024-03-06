@@ -463,7 +463,7 @@
   }
 
   .table td {
-    padding: 0.55rem 0.75rem;
+    padding: 0.65rem 0.75rem;
     vertical-align: middle;
   }
 
