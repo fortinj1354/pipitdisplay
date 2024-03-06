@@ -1,119 +1,118 @@
 <template>
-  <div style="background: grey;padding-bottom: 20px;padding-top: 20px;">
-    <div class="fb-header">
-      <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1> 
-      <img src=""~/assets/wrtlogo.png"" style="height: 128px;" />
-    </div>
-  </div>
-  <div class="container-fluid px-5 py-4">
-    <div class="row">
-
-      <div class="col-lg-12 col-xl-8">
-        <h2 class="text-center">{{ eventName }} - Matches</h2>
-        <table class="table table-striped table-dark table-borderless rounded text-center">
-          <thead>
-            <tr>
-              <th class="bg-secondary">Match</th>
-              <th class="bg-secondary">Time <small>(scheduled / predicted / acutal)</small></th>
-              <th colspan="3" class="font-weight-bold bg-danger">Red</th>
-              <th colspan="3" class="font-weight-bold bg-primary">Blue</th>
-              <th colspan="3" class="bg-secondary">Status</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr v-for="match in matches">
-              <th>{{match.comp_level.toUpperCase()}}#{{match.match_number}}</th>
-              <td>{{formatTime(match.time)}} / {{formatTime(match.predicted_time)}} / {{formatTime(match.actual_time)}}</td>
-              <td
-                v-for="team in match.alliances.red.team_keys"
-                :class="{myteam: isMyTeam(team)}"
-                >{{team.replace('frc','')}}</td>
-              <td
-                v-for="team in match.alliances.blue.team_keys"
-                :class="{myteam: isMyTeam(team)}"
-                >{{team.replace('frc','')}}</td>
-
-              <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}">{{calcStatus(match)}}</td>
-            </tr>
-          </tbody>
-        </table>
+  <div>
+    <div style="background: grey; padding-bottom: 20px; padding-top: 20px;">
+      <div class="fb-header">
+        <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1> 
+        <img src="~/assets/wrtlogo.png" style="height: 128px;" />
       </div>
-
-      <div class="col-lg-12 col-xl-4">
-        <div class="row">
-          <div class="col-lg-6 col-xl-12">
-            <h2 class="text-center display-5">
-              <small class="smaller" v-if="team">FRC{{ team }}</small>
-              {{nextMatch.title}}
-              <small class="smaller">{{nextMatch.comp_level}}#{{nextMatch.match_number}}</small>
-            </h2>
-
-            <div class="row text-center">
-              <div class="col text-nowrap">Scheduled: {{formatTime(nextMatch.time)}}</div>
-              <div class="col text-nowrap">Predicted: {{formatTime(nextMatch.predicted_time)}}</div>
+    </div>
+    <div class="container-fluid px-5 py-4">
+      <div class="row">
+  
+        <div class="col-lg-12 col-xl-8">
+          <h2 class="text-center">{{ eventName }} - Matches</h2>
+          <table class="table table-striped table-dark table-borderless rounded text-center">
+            <thead>
+              <tr>
+                <th class="bg-secondary">Match</th>
+                <th class="bg-secondary">Time <small>(scheduled / predicted / acutal)</small></th>
+                <th colspan="3" class="font-weight-bold bg-danger">Red</th>
+                <th colspan="3" class="font-weight-bold bg-primary">Blue</th>
+                <th colspan="3" class="bg-secondary">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="match in matches">
+                <th>{{match.comp_level.toUpperCase()}}#{{match.match_number}}</th>
+                <td>{{formatTime(match.time)}} / {{formatTime(match.predicted_time)}} / {{formatTime(match.actual_time)}}</td>
+                <td
+                  v-for="team in match.alliances.red.team_keys"
+                  :class="{myteam: isMyTeam(team)}"
+                  >{{team.replace('frc','')}}</td>
+                <td
+                  v-for="team in match.alliances.blue.team_keys"
+                  :class="{myteam: isMyTeam(team)}"
+                  >{{team.replace('frc','')}}</td>
+  
+                <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}">{{calcStatus(match)}}</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+  
+        <div class="col-lg-12 col-xl-4">
+          <div class="row">
+            <div class="col-lg-6 col-xl-12">
+              <h2 class="text-center display-5">
+                <small class="smaller" v-if="team">FRC{{ team }}</small>
+                {{nextMatch.title}}
+                <small class="smaller">{{nextMatch.comp_level}}#{{nextMatch.match_number}}</small>
+              </h2>
+  
+              <div class="row text-center">
+                <div class="col text-nowrap">Scheduled: {{formatTime(nextMatch.time)}}</div>
+                <div class="col text-nowrap">Predicted: {{formatTime(nextMatch.predicted_time)}}</div>
+              </div>
+  
+              <h2 class="text-center pt-2 pb-2" style="white-space: nowrap;"><small style="font-size: 75%;">Countdown:</small>
+                <VueCountdown :time="nextMatch.countdown">
+                  <template slot-scope="props"><span v-if="props.hours>0">{{ props.hours }}h </span>{{ props.minutes }}m {{ props.seconds }}s</template>
+                </VueCountdown>
+                <small style="font-size: 35%;">(to {{nextMatch.countdownTo}})</small>
+              </h2>
+  
+              <table class="table table-striped table-dark table-borderless rounded shadow-sm">
+                <thead class="text-center thead-dark">
+                  <tr class="rounded-top">
+                    <th class="font-weight-bold bg-danger">Red</th>
+                    <th class="font-weight-bold bg-primary">Blue</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center rounded-bottom">
+                  <tr v-if="'alliances' in nextMatch" v-for="idx in 3">
+                    <td>
+                      <span :class="{myteam: isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">{{nextMatch.alliances.red.team_keys[idx-1].replace('frc', '').trim()}}</span>
+                      <br>
+                      <small>{{getRanking(nextMatch.alliances.red.team_keys[idx-1])}}</small>
+                    </td>
+                    <td>
+                      <span :class="{myteam: isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">{{nextMatch.alliances.blue.team_keys[idx-1].replace('frc','').trim()}}</span>
+                      <br>
+                      <small>{{getRanking(nextMatch.alliances.blue.team_keys[idx-1])}}</small>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+  
+              
             </div>
-
-            <h2 class="text-center pt-2 pb-2" style="white-space: nowrap;"><small style="font-size: 75%;">Countdown:</small>
-              <VueCountdown :time="nextMatch.countdown">
-                <template slot-scope="props"><span v-if="props.hours>0">{{ props.hours }}h </span>{{ props.minutes }}m {{ props.seconds }}s</template>
-              </VueCountdown>
-              <small style="font-size: 35%;">(to {{nextMatch.countdownTo}})</small>
-            </h2>
-
-            <table class="table table-striped table-dark table-borderless rounded shadow-sm">
-              <thead class="text-center thead-dark">
-                <tr class="rounded-top">
-                  <th class="font-weight-bold bg-danger">Red</th>
-                  <th class="font-weight-bold bg-primary">Blue</th>
-                </tr>
-              </thead>
-              <tbody class="text-center rounded-bottom">
-                <tr v-if="'alliances' in nextMatch" v-for="idx in 3">
-                  <td>
-                    <span :class="{myteam: isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">{{nextMatch.alliances.red.team_keys[idx-1].replace('frc', '').trim()}}</span>
-                    <br>
-                    <small>{{getRanking(nextMatch.alliances.red.team_keys[idx-1])}}</small>
-                  </td>
-                  <td>
-                    <span :class="{myteam: isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">{{nextMatch.alliances.blue.team_keys[idx-1].replace('frc','').trim()}}</span>
-                    <br>
-                    <small>{{getRanking(nextMatch.alliances.blue.team_keys[idx-1])}}</small>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-
-            
-          </div>
-          <div class="col-lg-6 col-xl-12">
-            <h2 class="text-center">Rankings <small class="smaller">Rank {{ourRank}} of {{teamCount}}</small></h2>
-
-            <table class="table table-striped table-dark table-borderless rounded shadow-sm">
-              <thead class="text-center thead-dark">
-                <tr class="rounded-top">
-                  <th class="font-weight-bold bg-secondary">Rank</th>
-                  <th class="font-weight-bold bg-secondary">Team</th>
-                  <th class="bg-secondary">RP</th>
-                  <th class="bg-secondary">W-L-T</th>
-                  <th class="bg-secondary">Played</th>
-                </tr>
-              </thead>
-              <tbody class="text-center rounded-bottom">
-                <tr  v-for="team in rankings.slice(0,8)">
-                  <td>{{team.rank}}</td>
-                  <td :class="{myteam: isMyTeam(team.team_key)}">{{team.team_key.replace('frc', '')}}</td>
-                  <td>{{team.sort_orders[0]}}</td>
-                  <td>{{team.record.wins}}-{{team.record.losses}}-{{team.record.ties}}</td>
-                  <td>{{team.matches_played}}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="col-lg-6 col-xl-12">
+              <h2 class="text-center">Rankings <small class="smaller">Rank {{ourRank}} of {{teamCount}}</small></h2>
+  
+              <table class="table table-striped table-dark table-borderless rounded shadow-sm">
+                <thead class="text-center thead-dark">
+                  <tr class="rounded-top">
+                    <th class="font-weight-bold bg-secondary">Rank</th>
+                    <th class="font-weight-bold bg-secondary">Team</th>
+                    <th class="bg-secondary">RP</th>
+                    <th class="bg-secondary">W-L-T</th>
+                    <th class="bg-secondary">Played</th>
+                  </tr>
+                </thead>
+                <tbody class="text-center rounded-bottom">
+                  <tr  v-for="team in rankings.slice(0,8)">
+                    <td>{{team.rank}}</td>
+                    <td :class="{myteam: isMyTeam(team.team_key)}">{{team.team_key.replace('frc', '')}}</td>
+                    <td>{{team.sort_orders[0]}}</td>
+                    <td>{{team.record.wins}}-{{team.record.losses}}-{{team.record.ties}}</td>
+                    <td>{{team.matches_played}}</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
           </div>
         </div>
       </div>
-
-
-
     </div>
 
    
@@ -191,13 +190,13 @@
       // component's data. Changes to the components data trigger the corresponding
       // functions in the watch section.
       if (localStorage.getItem("teamNumber")) {
-        this.team = localStorage.getItem("teamNumber") || "4909";
+        this.team = localStorage.getItem("teamNumber") || "2974";
       }
       if (localStorage.getItem("eventKey")) {
-        this.event = localStorage.getItem("eventKey") || "2020nhgrs";
+        this.event = localStorage.getItem("eventKey") || "2024scand";
       }
       if (localStorage.getItem("tba_key")) {
-        this.tba_key = localStorage.getItem("tba_key");
+        this.tba_key = localStorage.getItem("tba_key") || "XlGpSFzNPoEawzqx6nc5oJDmY5Cld4WZGRNQwZGXpYfiHWhsAu5IyYzes3S4lyNT";
       }
 
       updateHandle = setInterval(this.updateData, 10*1000);
