@@ -64,3 +64,11 @@ export default {
     }
   }
 }
+
+export default defineNuxtConfig({
+  runtimeConfig: {
+    public: {
+      tbaApiKey: process.env.NUXT_TBA_API_KEY || ''
+    }
+  }
+})
