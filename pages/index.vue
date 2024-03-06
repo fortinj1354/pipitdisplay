@@ -188,7 +188,7 @@
         this.event = localStorage.getItem("eventKey") || "2024scand";
       }
 
-      console.log("API Key: " + $config.tbaApiKey);
+      console.log("API Key: " + this.$config.tbaApiKey);
       tba.defaults.headers.common['X-TBA-Auth-Key'] = this.tba_key;
 
       updateHandle = setInterval(this.updateData, 10*1000);
