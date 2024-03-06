@@ -462,10 +462,14 @@
     font-size: 70%;
   }
 
+  .table td {
+    padding: 0.5rem 0.75rem 0.5rem 0.75rem
+  }
+
   .myteam {
     font-weight: bold;
     text-decoration: underline;
-    font-size: 125%;
+/*     font-size: 125%; */
   }
 
   .fb-header {
