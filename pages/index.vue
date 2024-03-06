@@ -127,10 +127,6 @@
         <b-form-select v-model="event" :options="eventOptions"></b-form-select>
       </div>
       <div class="col-3 text-center">
-        TBA API Key:
-        <b-form-input type="password" v-model="tba_key"></b-form-input>
-      </div>
-      <div class="col-3 text-center">
         Last Updated: <br> {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}}
       </div>
 
@@ -172,7 +168,7 @@
       return {
         team      : null,
         event     : null,
-        tba_key   : null,
+        tba_key   : "XlGpSFzNPoEawzqx6nc5oJDmY5Cld4WZGRNQwZGXpYfiHWhsAu5IyYzes3S4lyNT",
         rankings  : [],
         nextMatch : {},
         matches   : [],
@@ -195,9 +191,8 @@
       if (localStorage.getItem("eventKey")) {
         this.event = localStorage.getItem("eventKey") || "2024scand";
       }
-      if (localStorage.getItem("tba_key")) {
-        this.tba_key = localStorage.getItem("tba_key") || "XlGpSFzNPoEawzqx6nc5oJDmY5Cld4WZGRNQwZGXpYfiHWhsAu5IyYzes3S4lyNT";
-      }
+
+      tba.defaults.headers.common['X-TBA-Auth-Key'] = this.tba_key;
 
       updateHandle = setInterval(this.updateData, 10*1000);
     },
@@ -448,11 +443,6 @@
         console.log(`team changed from ${oldValue} to ${value}`);
         localStorage.setItem("teamNumber", value);
 
-        this.updateData();
-      },
-      tba_key(value, oldValue) {
-        console.log(`tba_key changed from ${oldValue} to ${value}`);
-        localStorage.setItem("tba_key", value);
         tba.defaults.headers.common['X-TBA-Auth-Key'] = value;
 
         // load the list of events for this year
@@ -460,7 +450,7 @@
         tba.get(`/events/${new Date().getFullYear()}`).then((res) => {
           this.events= res.data;
         });
-
+        
         this.updateData();
       }
     }
