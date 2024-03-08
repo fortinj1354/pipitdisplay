@@ -284,7 +284,7 @@
         }
         const team = this.rankings.filter((t)=>(t.team_key === teamKey))[0];
         //Null check for teams with no rank
-        if (e) {
+        if (team) {
           return `Rank ${team.rank} / RP ${team.sort_orders[0]}`;
         }
         return 'No Rank';
