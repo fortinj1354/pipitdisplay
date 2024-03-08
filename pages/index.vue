@@ -283,7 +283,10 @@
           return "no rankings loaded yet";
         }
         const team = this.rankings.filter((t)=>(t.team_key === teamKey))[0];
-        return `Rank ${team.rank} / RP ${team.sort_orders[0]}`;
+        if (e) {
+          return `Rank ${team.rank} / RP ${team.sort_orders[0]}`;
+        }
+        return 'No Rank';
       },
       isMyTeam(teamKey) {
         return (`frc${this.team}` == teamKey);
