@@ -316,7 +316,8 @@
             // console.log("matches", JSON.stringify(matches[0], null, 4))
 
             // hide qualifing matches once quarter finals start
-            this.isFinals = matches.map((m)=>(m.comp_level)).includes("qf");
+            let matchCompLevels = matches.map((m)=>(m.comp_level));
+            this.isFinals = matchCompLevels.includes("qf") || matchCompLevels.includes("sf");
             if (this.isFinals) {
               matches = matches.filter((m) => (m.comp_level !== "qm"));
             }
@@ -348,7 +349,8 @@
             let matches = res.data.sort((a,b) => (a.time - b.time));
 
             // hide qualifing matches once quarter finals start
-            this.isFinals = matches.map((m)=>(m.comp_level)).includes("qf");
+            let matchCompLevels = matches.map((m)=>(m.comp_level));
+            this.isFinals = matchCompLevels.includes("qf") || matchCompLevels.includes("sf");
             if (this.isFinals) {
               matches = matches.filter((m) => (m.comp_level !== "qm"));
             }
