@@ -320,6 +320,11 @@
             this.isFinals = matchCompLevels.includes("qf") || matchCompLevels.includes("sf");
             if (this.isFinals) {
               matches = matches.filter((m) => (m.comp_level !== "qm"));
+              matches.forEach((m) => {
+                if (m.comp_level == "sf") {
+                  m.match_number = m.set_number;
+                }
+              });
             }
 
             this.matches = matches;
@@ -353,6 +358,11 @@
             this.isFinals = matchCompLevels.includes("qf") || matchCompLevels.includes("sf");
             if (this.isFinals) {
               matches = matches.filter((m) => (m.comp_level !== "qm"));
+              matches.forEach((m) => {
+                if (m.comp_level == "sf") {
+                  m.match_number = m.set_number;
+                }
+              });
             }
 
             this.matches = matches;
