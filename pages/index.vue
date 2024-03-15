@@ -383,7 +383,9 @@
               this.nextMatch = nextMatchRes.data;
               this.nextMatch.title = "Next Match";
               this.nextMatch.comp_level = this.nextMatch.comp_level.toUpperCase();
-
+              if (this.nextMatch.comp_level == "SF") {
+                this.nextMatch.match_number = this.nextMatch.set_number;
+              }
 
               let countdownTo = this.nextMatch.predicted_time
               this.nextMatch.countdownTo = "predicted";
@@ -406,6 +408,9 @@
               this.nextMatch = nextMatchRes.data;
               this.nextMatch.title = "Last Match"; //temporary @fixme for screenshots
               this.nextMatch.comp_level = this.nextMatch.comp_level.toUpperCase();
+              if (this.nextMatch.comp_level == "SF") {
+                this.nextMatch.match_number = this.nextMatch.set_number;
+              }
             } else {
               this.nextMatch = {};
             }
