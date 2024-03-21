@@ -151,6 +151,8 @@
       <div style="flex: 1" class="sponsors">
         <img src="~/assets/novelis.png" />
         <img src="~/assets/carrier.png" />
+        <img src="~/assets/difco.webp" />
+        <img src="~/assets/ccsd.webp" />
       </div>
     </div>
   </div>
