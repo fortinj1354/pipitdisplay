@@ -7,7 +7,7 @@
       </div>
     </div>
     <div class="fb-page-container">
-      <div style="flex: 3">
+      <div style="flex: 4">
         <div class="container-fluid px-5 py-4">
           <div class="row">
             <div class="col-lg-12 col-xl-8">
@@ -149,8 +149,8 @@
         </div>
       </div>
       <div style="flex: 1" class="sponsors">
-        <img src="~/assets/novelis.png" style="height: 128px;" />
-        <img src="~/assets/carrier.png" style="height: 128px;" />
+        <img src="~/assets/novelis.png" />
+        <img src="~/assets/carrier.png" />
       </div>
     </div>
   </div>
