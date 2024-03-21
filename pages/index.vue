@@ -148,7 +148,7 @@
           </div>
         </div>
       </div>
-      <div style="flex: 1" class="sponsors">
+      <div style="flex: 1; background: grey;" class="sponsors">
         <img src="~/assets/novelis.png" />
         <img src="~/assets/carrier.png" />
         <img src="~/assets/difco.webp" />
