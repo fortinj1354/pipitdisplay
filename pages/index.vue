@@ -8,7 +8,7 @@
     </div>
     <div class="fb-page-container">
       <div style="flex: 4">
-        <div class="container-fluid px-5 py-4">
+        <div class="container-fluid px-3 py-3">
           <div class="row">
             <div class="col-lg-12 col-xl-8">
               <h2 class="text-center">{{ eventName }}
@@ -540,7 +540,6 @@
 
   .sponsors img {
     padding-top: 20px;
-    padding-bottom: 20px;
     max-width: 100%;
   }
 </style>
