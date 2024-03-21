@@ -135,7 +135,7 @@
         </div>
       </div>
     </div>
-    <div style="flex: 1">
+    <div style="flex: 1" class="sponsors">
       <img src="~/assets/novelis.png" style="height: 128px;" />
       <img src="~/assets/carrier.png" style="height: 128px;" />
     </div>  
@@ -513,7 +513,18 @@
   	flex-direction: row;
   	flex-wrap: nowrap;
   	justify-content: space-evenly;
-  	align-items: center;
+  	align-items: flex-start;
   	align-content: center;
+  }
+
+  .sponsors {
+    display: flex;
+    justify-content: center; 
+    align-items: flex-start; 
+    flex-direction: column; 
+  }
+
+  .sponsors i {
+    padding: 20px;
   }
 </style>
