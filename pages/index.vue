@@ -1,144 +1,158 @@
 <template>
-  <div class="fb-page-container">
-    <div style="flex: 3"> 
-      <div style="background: grey; padding-bottom: 10px; padding-top: 10px;">
-        <div class="fb-header">
-          <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1> 
-          <img src="~/assets/wrtlogo.png" style="height: 128px;" />
-        </div>
+  <div>
+    <div style="background: grey; padding-bottom: 10px; padding-top: 10px;">
+      <div class="fb-header">
+        <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1>
+        <img src="~/assets/wrtlogo.png" style="height: 128px;" />
       </div>
-      <div class="container-fluid px-5 py-4">
-        <div class="row">
-    
-          <div class="col-lg-12 col-xl-8">
-            <h2 class="text-center">{{ eventName }} - Matches</h2>
-            <table class="table table-striped table-dark table-borderless rounded text-center">
-              <thead>
-                <tr>
-                  <th class="bg-secondary">Match</th>
-                  <th class="bg-secondary">Time <small>(scheduled / predicted / actual)</small></th>
-                  <th colspan="3" class="font-weight-bold bg-danger">Red</th>
-                  <th colspan="3" class="font-weight-bold bg-primary">Blue</th>
-                  <th colspan="3" class="bg-secondary">Status</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr v-for="match in matches">
-                  <th>{{match.comp_level.toUpperCase()}}#{{match.match_number}}</th>
-                  <td>{{formatTime(match.time)}} / {{formatTime(match.predicted_time)}} / {{formatTime(match.actual_time)}}</td>
-                  <td
-                    v-for="team in match.alliances.red.team_keys"
-                    :class="{myteam: isMyTeam(team), 'bg-danger': isMyTeam(team)}"
-                    >{{team.replace('frc','')}}</td>
-                  <td
-                    v-for="team in match.alliances.blue.team_keys"
-                    :class="{myteam: isMyTeam(team), 'bg-primary': isMyTeam(team)}"
-                    >{{team.replace('frc','')}}</td>
-    
-                  <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}">{{calcStatus(match)}}</td>
-                </tr>
-              </tbody>
-            </table>
-            <span class="text-muted">
-              Last Updated: {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}} <br />
-              Data powered by The Blue Alliance API <br />
-              Original dashboard written by FRC Team 4909 - TechplexEngineer/pipitdisplay on GitHub
-            </span>
-          </div>
-    
-          <div class="col-lg-12 col-xl-4">
-            <div class="row">
-              <div class="col-lg-6 col-xl-12">
-                <h2 class="text-center display-5">
-                  <small class="smaller" v-if="team">FRC{{ team }}</small>
-                  {{nextMatch.title}}
-                  <small class="smaller">{{nextMatch.comp_level}}#{{nextMatch.match_number}}</small>
-                </h2>
-    
-                <div class="row text-center">
-                  <div class="col text-nowrap">Scheduled: {{formatTime(nextMatch.time)}}</div>
-                  <div class="col text-nowrap">Predicted: {{formatTime(nextMatch.predicted_time)}}</div>
+    </div>
+    <div class="fb-page-container">
+      <div style="flex: 3">
+        <div class="container-fluid px-5 py-4">
+          <div class="row">
+            <div class="col-lg-12 col-xl-8">
+              <h2 class="text-center">{{ eventName }}
+                - Matches</h2>
+              <table class="table table-striped table-dark table-borderless rounded text-center">
+                <thead>
+                  <tr>
+                    <th class="bg-secondary">Match</th>
+                    <th class="bg-secondary">Time
+                      <small>(scheduled / predicted / actual)</small>
+                    </th>
+                    <th colspan="3" class="font-weight-bold bg-danger">Red</th>
+                    <th colspan="3" class="font-weight-bold bg-primary">Blue</th>
+                    <th colspan="3" class="bg-secondary">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr v-for="match in matches">
+                    <th>{{match.comp_level.toUpperCase()}}#{{match.match_number}}</th>
+                    <td>{{formatTime(match.time)}}
+                      /
+                      {{formatTime(match.predicted_time)}}
+                      /
+                      {{formatTime(match.actual_time)}}</td>
+                    <td v-for="team in match.alliances.red.team_keys"
+                      :class="{myteam: isMyTeam(team), 'bg-danger': isMyTeam(team)}">{{team.replace('frc','')}}</td>
+                    <td v-for="team in match.alliances.blue.team_keys"
+                      :class="{myteam: isMyTeam(team), 'bg-primary': isMyTeam(team)}">{{team.replace('frc','')}}</td>
+                    <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}">{{calcStatus(match)}}</td>
+                  </tr>
+                </tbody>
+              </table>
+              <span class="text-muted">
+                Last Updated:
+                {{moment(updated).format('h:mm:ssa YYYY-MMM-DD')}}
+                <br />
+                Data powered by The Blue Alliance API
+                <br />
+                Original dashboard written by FRC Team 4909 - TechplexEngineer/pipitdisplay on GitHub
+              </span>
+            </div>
+            <div class="col-lg-12 col-xl-4">
+              <div class="row">
+                <div class="col-lg-6 col-xl-12">
+                  <h2 class="text-center display-5">
+                    <small class="smaller" v-if="team">FRC{{ team }}</small>
+                    {{nextMatch.title}}
+                    <small class="smaller">{{nextMatch.comp_level}}#{{nextMatch.match_number}}</small>
+                  </h2>
+                  <div class="row text-center">
+                    <div class="col text-nowrap">Scheduled:
+                      {{formatTime(nextMatch.time)}}</div>
+                    <div class="col text-nowrap">Predicted:
+                      {{formatTime(nextMatch.predicted_time)}}</div>
+                  </div>
+                  <h2 class="text-center pt-2 pb-2" style="white-space: nowrap;">
+                    <small style="font-size: 75%;">Countdown:</small>
+                    <VueCountdown :time="nextMatch.countdown">
+                      <template slot-scope="props">
+                        <span v-if="props.hours>0">{{ props.hours }}h
+                        </span>
+                        {{ props.minutes }}m
+                        {{ props.seconds }}s</template>
+                    </VueCountdown>
+                    <small style="font-size: 35%;">(to
+                      {{nextMatch.countdownTo}})</small>
+                  </h2>
+                  <table class="table table-striped table-dark table-borderless rounded shadow-sm">
+                    <thead class="text-center thead-dark">
+                      <tr class="rounded-top">
+                        <th class="font-weight-bold bg-danger">Red</th>
+                        <th class="font-weight-bold bg-primary">Blue</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-center rounded-bottom">
+                      <tr v-if="'alliances' in nextMatch" v-for="idx in 3">
+                        <td :class="{'bg-danger': isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">
+                          <span
+                            :class="{myteam: isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">{{nextMatch.alliances.red.team_keys[idx-1].replace('frc',
+                            '').trim()}}</span>
+                          <br>
+                          <small>{{getRanking(nextMatch.alliances.red.team_keys[idx-1])}}</small>
+                        </td>
+                        <td :class="{'bg-primary': isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">
+                          <span
+                            :class="{myteam: isMyTeam(nextMatch.alliances.blue.team_keys[idx-1]), 'bg-primary': isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">{{nextMatch.alliances.blue.team_keys[idx-1].replace('frc','').trim()}}</span>
+                          <br>
+                          <small>{{getRanking(nextMatch.alliances.blue.team_keys[idx-1])}}</small>
+                        </td>
+                      </tr>
+                    </tbody>
+                  </table>
                 </div>
-    
-                <h2 class="text-center pt-2 pb-2" style="white-space: nowrap;"><small style="font-size: 75%;">Countdown:</small>
-                  <VueCountdown :time="nextMatch.countdown">
-                    <template slot-scope="props"><span v-if="props.hours>0">{{ props.hours }}h </span>{{ props.minutes }}m {{ props.seconds }}s</template>
-                  </VueCountdown>
-                  <small style="font-size: 35%;">(to {{nextMatch.countdownTo}})</small>
-                </h2>
-    
-                <table class="table table-striped table-dark table-borderless rounded shadow-sm">
-                  <thead class="text-center thead-dark">
-                    <tr class="rounded-top">
-                      <th class="font-weight-bold bg-danger">Red</th>
-                      <th class="font-weight-bold bg-primary">Blue</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-center rounded-bottom">
-                    <tr v-if="'alliances' in nextMatch" v-for="idx in 3">
-                      <td :class="{'bg-danger': isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">
-                        <span :class="{myteam: isMyTeam(nextMatch.alliances.red.team_keys[idx-1])}">{{nextMatch.alliances.red.team_keys[idx-1].replace('frc', '').trim()}}</span>
-                        <br>
-                        <small>{{getRanking(nextMatch.alliances.red.team_keys[idx-1])}}</small>
-                      </td>
-                      <td :class="{'bg-primary': isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">
-                        <span :class="{myteam: isMyTeam(nextMatch.alliances.blue.team_keys[idx-1]), 'bg-primary': isMyTeam(nextMatch.alliances.blue.team_keys[idx-1])}">{{nextMatch.alliances.blue.team_keys[idx-1].replace('frc','').trim()}}</span>
-                        <br>
-                        <small>{{getRanking(nextMatch.alliances.blue.team_keys[idx-1])}}</small>
-                      </td>
-                    </tr>
-                  </tbody>
-                </table>
-    
-                
-              </div>
-              <div class="col-lg-6 col-xl-12">
-                <h2 class="text-center">Rankings <small class="smaller">Rank {{ourRank}} of {{teamCount}}</small></h2>
-    
-                <table class="table table-striped table-dark table-borderless rounded shadow-sm">
-                  <thead class="text-center thead-dark">
-                    <tr class="rounded-top">
-                      <th class="font-weight-bold bg-secondary">Rank</th>
-                      <th class="font-weight-bold bg-secondary">Team</th>
-                      <th class="bg-secondary">RP</th>
-                      <th class="bg-secondary">W-L-T</th>
-                      <th class="bg-secondary">Played</th>
-                    </tr>
-                  </thead>
-                  <tbody class="text-center rounded-bottom">
-                    <tr v-for="team in rankings.slice(0,8)" :class="{'bg-danger': isMyTeam(team.team_key)}">
-                      <td>{{team.rank}}</td>
-                      <td :class="{myteam: isMyTeam(team.team_key)}">{{team.team_key.replace('frc', '')}}</td>
-                      <td>{{team.sort_orders[0]}}</td>
-                      <td>{{team.record.wins}}-{{team.record.losses}}-{{team.record.ties}}</td>
-                      <td>{{team.matches_played}}</td>
-                    </tr>
-                  </tbody>
-                </table>
+                <div class="col-lg-6 col-xl-12">
+                  <h2 class="text-center">Rankings
+                    <small class="smaller">Rank
+                      {{ourRank}}
+                      of
+                      {{teamCount}}</small>
+                  </h2>
+                  <table class="table table-striped table-dark table-borderless rounded shadow-sm">
+                    <thead class="text-center thead-dark">
+                      <tr class="rounded-top">
+                        <th class="font-weight-bold bg-secondary">Rank</th>
+                        <th class="font-weight-bold bg-secondary">Team</th>
+                        <th class="bg-secondary">RP</th>
+                        <th class="bg-secondary">W-L-T</th>
+                        <th class="bg-secondary">Played</th>
+                      </tr>
+                    </thead>
+                    <tbody class="text-center rounded-bottom">
+                      <tr v-for="team in rankings.slice(0,8)" :class="{'bg-danger': isMyTeam(team.team_key)}">
+                        <td>{{team.rank}}</td>
+                        <td :class="{myteam: isMyTeam(team.team_key)}">{{team.team_key.replace('frc', '')}}</td>
+                        <td>{{team.sort_orders[0]}}</td>
+                        <td>{{team.record.wins}}-{{team.record.losses}}-{{team.record.ties}}</td>
+                        <td>{{team.matches_played}}</td>
+                      </tr>
+                    </tbody>
+                  </table>
+                </div>
               </div>
             </div>
           </div>
         </div>
+        <br />
+        <br />
+        <!-- Data Input -->
+        <div class="row text-muted">
+          <div class="col-2 text-center">
+            Optional Team Filter:
+            <b-form-input type="number" v-model="team" placeholder="####"></b-form-input>
+          </div>
+          <div class="col-4 text-center">
+            Event:
+            <b-form-select v-model="event" :options="eventOptions"></b-form-select>
+          </div>
+        </div>
       </div>
-  
-      <br />
-      <br />
-  
-      <!-- Data Input -->
-      <div class="row text-muted">
-        <div class="col-2 text-center">
-          Optional Team Filter: <b-form-input type="number" v-model="team" placeholder="####"></b-form-input>
-        </div>
-        <div class="col-4 text-center">
-          Event:
-          <b-form-select v-model="event" :options="eventOptions"></b-form-select>
-        </div>
+      <div style="flex: 1" class="sponsors">
+        <img src="~/assets/novelis.png" style="height: 128px;" />
+        <img src="~/assets/carrier.png" style="height: 128px;" />
       </div>
     </div>
-    <div style="flex: 1" class="sponsors">
-      <img src="~/assets/novelis.png" style="height: 128px;" />
-      <img src="~/assets/carrier.png" style="height: 128px;" />
-    </div>  
   </div>
 </template>
 
