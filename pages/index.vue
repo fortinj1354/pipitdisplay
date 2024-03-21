@@ -136,7 +136,8 @@
       </div>
     </div>
     <div style="flex: 1">
-      SPONSOR TEST BOX
+      <img src="~/assets/novelis.png" style="height: 128px;" />
+      <img src="~/assets/carrier.png" style="height: 128px;" />
     </div>  
   </div>
 </template>
