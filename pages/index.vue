@@ -538,7 +538,8 @@
     flex-direction: column; 
   }
 
-  .sponsors i {
-    padding: 20px;
+  .sponsors img {
+    padding-top: 20px;
+    padding-bottom: 20px;
   }
 </style>
