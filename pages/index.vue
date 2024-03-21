@@ -537,7 +537,8 @@
     display: flex;
     justify-content: center; 
     align-items: center; 
-    flex-direction: column; 
+    flex-direction: column;
+    padding-right: 1rem;
   }
 
   .sponsors img {
