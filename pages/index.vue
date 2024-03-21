@@ -1,6 +1,6 @@
 <template>
-  <div>
-    <div style="width: 75%"> 
+  <div class="fb-page-container">
+    <div style="flex-grow:75"> 
       <div style="background: grey; padding-bottom: 10px; padding-top: 10px;">
         <div class="fb-header">
           <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1> 
@@ -120,25 +120,24 @@
           </div>
         </div>
       </div>
-      <div style="width= 25%; background: grey">
-        SPONSOR TEST BOX
+  
+      <br />
+      <br />
+  
+      <!-- Data Input -->
+      <div class="row text-muted">
+        <div class="col-2 text-center">
+          Optional Team Filter: <b-form-input type="number" v-model="team" placeholder="####"></b-form-input>
+        </div>
+        <div class="col-4 text-center">
+          Event:
+          <b-form-select v-model="event" :options="eventOptions"></b-form-select>
+        </div>
       </div>
     </div>
-
-    <br />
-    <br />
-
-    <!-- Data Input -->
-    <div class="row text-muted">
-      <div class="col-2 text-center">
-        Optional Team Filter: <b-form-input type="number" v-model="team" placeholder="####"></b-form-input>
-      </div>
-      <div class="col-4 text-center">
-        Event:
-        <b-form-select v-model="event" :options="eventOptions"></b-form-select>
-      </div>
-    </div>
-
+    <div style="background:grey; flex-grow:25">
+      SPONSOR TEST BOX
+    </div>  
   </div>
 </template>
 
@@ -501,6 +500,15 @@
 
   .fb-header {
   	display: flex;
+  	flex-direction: row;
+  	flex-wrap: nowrap;
+  	justify-content: space-evenly;
+  	align-items: center;
+  	align-content: center;
+  }
+
+  .fb-page-container {
+    display: flex;
   	flex-direction: row;
   	flex-wrap: nowrap;
   	justify-content: space-evenly;
