@@ -1,6 +1,6 @@
 <template>
   <div class="fb-page-container">
-    <div style="flex-grow:75"> 
+    <div style="flex: 3"> 
       <div style="background: grey; padding-bottom: 10px; padding-top: 10px;">
         <div class="fb-header">
           <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1> 
@@ -135,7 +135,7 @@
         </div>
       </div>
     </div>
-    <div style="background:grey; flex-grow:25">
+    <div style="flex: 1">
       SPONSOR TEST BOX
     </div>  
   </div>
