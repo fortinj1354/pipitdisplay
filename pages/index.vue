@@ -541,5 +541,6 @@
   .sponsors img {
     padding-top: 20px;
     padding-bottom: 20px;
+    max-width: 100%;
   }
 </style>
