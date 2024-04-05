@@ -10,15 +10,18 @@
       <div style="flex: 4">
         <div class="container-fluid px-3 py-3">
           <div class="row">
-            <div v-bind:class="{'col-lg-12 col-xl-8': showNextMatch,  'col-lg-16 col-xl-12': !showNextMatch}">
+            <div v-bind:class="{'col-lg-12 col-xl-8': eventIsSyncing,  'col-lg-16 col-xl-12': !eventIsSyncing}">
               <h2 class="text-center">{{ eventName }}
                 - Matches</h2>
               <table class="table table-striped table-dark table-borderless rounded text-center">
                 <thead>
                   <tr>
                     <th class="bg-secondary">Match</th>
-                    <th class="bg-secondary">Time
+                    <th class="bg-secondary" v-if="eventIsSyncing">Time
                       <small>(scheduled / predicted / actual)</small>
+                    </th>
+                    <th class="bg-secondary" v-if="!eventIsSyncing">Time
+                      <small>(scheduled / actual)</small>
                     </th>
                     <th colspan="3" class="font-weight-bold bg-danger">Red</th>
                     <th colspan="3" class="font-weight-bold bg-primary">Blue</th>
@@ -50,7 +53,7 @@
                 Original dashboard written by FRC Team 4909 - TechplexEngineer/pipitdisplay on GitHub
               </span>
             </div>
-            <div class="col-lg-12 col-xl-4" v-if="showNextMatch">
+            <div class="col-lg-12 col-xl-4" v-if="eventIsSyncing">
               <div class="row">
                 <div class="col-lg-6 col-xl-12">
                   <h2 class="text-center display-5">
@@ -147,8 +150,8 @@
             <b-form-select v-model="event" :options="eventOptions"></b-form-select>
           </div>
           <div class="col-2 text-center">
-            Display Next Match:
-            <b-form-select v-model="showNextMatch">
+            Event is syncing:
+            <b-form-select v-model="eventIsSyncing">
               <option :value='true'>Yes</option>
               <option :value='false'>No</option>
             </b-form-select>
@@ -192,7 +195,7 @@
       return {
         team      : null,
         event     : null,
-        showNextMatch: true,
+        eventIsSyncing: true,
         rankings  : [],
         nextMatch : {},
         matches   : [],
