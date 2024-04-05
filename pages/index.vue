@@ -33,8 +33,7 @@
                     <th>{{match.comp_level.toUpperCase()}}#{{match.match_number}}</th>
                     <td>{{formatTime(match.time)}}
                       /
-                      {{formatTime(match.predicted_time)}}
-                      /
+                      {{ eventIsSyncing ? formatTime(match.predicted_time) + ' / ' : '' }}
                       {{formatTime(match.actual_time)}}</td>
                     <td v-for="team in match.alliances.red.team_keys"
                       :class="{myteam: isMyTeam(team), 'bg-danger': isMyTeam(team)}">{{team.replace('frc','')}}</td>
