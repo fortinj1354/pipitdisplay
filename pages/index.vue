@@ -50,7 +50,7 @@
                 Original dashboard written by FRC Team 4909 - TechplexEngineer/pipitdisplay on GitHub
               </span>
             </div>
-            <div class="col-lg-12 col-xl-4">
+            <div class="col-lg-12 col-xl-4" v-if="showNextMatch">
               <div class="row">
                 <div class="col-lg-6 col-xl-12">
                   <h2 class="text-center display-5">
@@ -152,9 +152,6 @@
               <option :value='true'>Yes</option>
               <option :value='false'>No</option>
             </b-form-select>
-            <div v-if="showNextMatch">
-              Hidden text?
-            <div>
           </div>
         </div>
       </div>
