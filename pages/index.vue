@@ -146,6 +146,16 @@
             Event:
             <b-form-select v-model="event" :options="eventOptions"></b-form-select>
           </div>
+          <div class="col-4 text-center">
+            Display Next Match:
+            <b-form-select v-model="showNextMatch">
+              <option :value='true'>Yes</option>
+              <option :value='false'>No</option>
+            </b-form-select>
+            <div v-if="showNextMatch">
+              Hidden text?
+            <div>
+          </div>
         </div>
       </div>
       <div style="flex: 1;" class="sponsors">
@@ -185,6 +195,7 @@
       return {
         team      : null,
         event     : null,
+        showNextMatch: true,
         rankings  : [],
         nextMatch : {},
         matches   : [],
