@@ -10,7 +10,7 @@
       <div style="flex: 4">
         <div class="container-fluid px-3 py-3">
           <div class="row">
-            <div class="col-lg-12 col-xl-8">
+            <div v-bind:class="{'col-lg-12 col-xl-8': showNextMatch,  'col-lg-16 col-xl-12': !showNextMatch}">
               <h2 class="text-center">{{ eventName }}
                 - Matches</h2>
               <table class="table table-striped table-dark table-borderless rounded text-center">
@@ -146,7 +146,7 @@
             Event:
             <b-form-select v-model="event" :options="eventOptions"></b-form-select>
           </div>
-          <div class="col-4 text-center">
+          <div class="col-2 text-center">
             Display Next Match:
             <b-form-select v-model="showNextMatch">
               <option :value='true'>Yes</option>
