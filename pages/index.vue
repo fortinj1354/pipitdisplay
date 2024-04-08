@@ -39,7 +39,7 @@
                       :class="{myteam: isMyTeam(team), 'bg-danger': isMyTeam(team)}">{{team.replace('frc','')}}</td>
                     <td v-for="team in match.alliances.blue.team_keys"
                       :class="{myteam: isMyTeam(team), 'bg-primary': isMyTeam(team)}">{{team.replace('frc','')}}</td>
-                    <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}">{{calcStatus(match)}}</td>
+                    <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}" style="font-weight: bold;">{{calcStatus(match)}}</td>
                   </tr>
                 </tbody>
               </table>
