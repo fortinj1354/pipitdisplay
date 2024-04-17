@@ -159,6 +159,7 @@
       </div>
       <div style="flex: 1;" class="sponsors">
         <img src="~/assets/novelis.png" />
+        <img src="~/assets/carrier.svg" />
         <img src="~/assets/automated-logic.svg" />
         <img src="~/assets/difco.webp" />
         <img src="~/assets/ccsd.webp" />
