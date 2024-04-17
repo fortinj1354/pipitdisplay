@@ -2,8 +2,8 @@
   <div>
     <div style="background: grey; padding-bottom: 10px; padding-top: 10px;">
       <div class="fb-header">
-        <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1>
-        <img src="~/assets/wrtlogo.png" style="height: 128px;" />
+        <h1 class="text-center" style="font-size: 5rem; flex: 4;">Walton Robotics Team 2974</h1>
+        <img src="~/assets/wrtlogo.png" style="height: 128px; flex: 1;" />
       </div>
     </div>
     <div class="fb-page-container">
@@ -39,7 +39,8 @@
                       :class="{myteam: isMyTeam(team), 'bg-danger': isMyTeam(team)}">{{team.replace('frc','')}}</td>
                     <td v-for="team in match.alliances.blue.team_keys"
                       :class="{myteam: isMyTeam(team), 'bg-primary': isMyTeam(team)}">{{team.replace('frc','')}}</td>
-                    <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}" style="font-weight: bold;">{{calcStatus(match)}}</td>
+                    <td :class="{'text-danger': redWin(match), 'text-primary': blueWin(match)}"
+                      style="font-weight: bold;">{{calcStatus(match)}}</td>
                   </tr>
                 </tbody>
               </table>
@@ -177,7 +178,7 @@
   // https://stackoverflow.com/questions/45178621/how-to-correctly-use-vue-js-watch-with-lodash-debounce
   const debounce = (func, delayms) => {
     let inDebounce
-    return function() {
+    return function () {
       const context = this
       const args = arguments
       clearTimeout(inDebounce)
@@ -191,22 +192,22 @@
     components: {
       VueCountdown
     },
-    data: function() {
+    data: function () {
       return {
-        team      : null,
-        event     : null,
+        team: null,
+        event: null,
         eventIsSyncing: true,
-        rankings  : [],
-        nextMatch : {},
-        matches   : [],
-        ourRank   : 'unknown',
-        teamCount : 'unknown',
-        updated   : new Date(),
-        events    : [],
-        isFinals  : false
+        rankings: [],
+        nextMatch: {},
+        matches: [],
+        ourRank: 'unknown',
+        teamCount: 'unknown',
+        updated: new Date(),
+        events: [],
+        isFinals: false
       }
     },
-    async asyncData ({ params }) {
+    async asyncData({ params }) {
     },
     mounted() {
       // if we have a team number and/or event key stored, restore them into the
@@ -221,7 +222,7 @@
 
       tba.defaults.headers.common['X-TBA-Auth-Key'] = this.$config.tbaApiKey;
 
-      updateHandle = setInterval(this.updateData, 10*1000);
+      updateHandle = setInterval(this.updateData, 10 * 1000);
     },
     beforeDestroy() {
       clearInterval(updateHandle);
@@ -232,15 +233,15 @@
         let out = "????";
 
         // match not yet played
-        if (! match.actual_time) {
+        if (!match.actual_time) {
           return "";
         }
 
         // no team filter
-        if (! this.team) {
+        if (!this.team) {
 
           // the actual_time can be returned before the score_breakdown is posted
-          if (! match.score_breakdown) {
+          if (!match.score_breakdown) {
             return "...."
           }
           if (match.alliances.red.score > match.alliances.blue.score) {
@@ -293,28 +294,28 @@
         return out;
       },
       redWin(match) {
-        if (! match.actual_time) {
+        if (!match.actual_time) {
           return false;
         }
         return match.alliances.red.score > match.alliances.blue.score;
       },
       blueWin(match) {
-        if (! match.actual_time) {
+        if (!match.actual_time) {
           return false;
         }
         return match.alliances.blue.score > match.alliances.red.score
       },
       formatTime(timestamp) {
-        if (! timestamp) {
+        if (!timestamp) {
           return "--:----";
         }
-        return moment(timestamp*1000).format("h:mma");
+        return moment(timestamp * 1000).format("h:mma");
       },
       getRanking(teamKey) {
         if (!this.rankings || !this.rankings.length) {
           return "no rankings loaded yet";
         }
-        const team = this.rankings.filter((t)=>(t.team_key === teamKey))[0];
+        const team = this.rankings.filter((t) => (t.team_key === teamKey))[0];
         //Null check for teams with no rank
         if (team) {
           return `Rank ${team.rank} / RP ${team.sort_orders[0]}`;
@@ -324,7 +325,7 @@
       isMyTeam(teamKey) {
         return (`frc${this.team}` == teamKey);
       },
-      updateData: debounce(function() {
+      updateData: debounce(function () {
         console.log("refresh data");
         if (!this.event) {
           console.log(`Missing required info: event:${this.event}`);
@@ -344,11 +345,11 @@
 
           tba.get(`/event/${event}/matches`).then((res) => {
             // sort by scheduled time
-            let matches = res.data.sort((a,b) => (a.time - b.time));
+            let matches = res.data.sort((a, b) => (a.time - b.time));
             // console.log("matches", JSON.stringify(matches[0], null, 4))
 
             // hide qualifing matches once quarter finals start
-            let matchCompLevels = matches.map((m)=>(m.comp_level));
+            let matchCompLevels = matches.map((m) => (m.comp_level));
             this.isFinals = matchCompLevels.includes("qf") || matchCompLevels.includes("sf");
             if (this.isFinals) {
               matches = matches.filter((m) => (m.comp_level !== "qm"));
@@ -362,11 +363,11 @@
             this.matches = matches;
 
             // get a list of matches that haven't been played yet
-            let notPlayed = matches.filter(m=>(! m.actual_time));
+            let notPlayed = matches.filter(m => (!m.actual_time));
 
             // current match is [0] net match is [1]
-            this.nextMatch = notPlayed.sort((a,b)=>(a.time-b.time))[0]
-            this.nextMatch.countdown = (this.nextMatch.time*1000 - Date.now());
+            this.nextMatch = notPlayed.sort((a, b) => (a.time - b.time))[0]
+            this.nextMatch.countdown = (this.nextMatch.time * 1000 - Date.now());
             this.nextMatch.countdownTo = "scheduled";
             if (this.nextMatch.countdown < 0) {
               console.log("Countdown is zero");
@@ -383,10 +384,10 @@
         try {
           tba.get(`/team/frc${team}/event/${event}/matches`).then((res) => {
             // sort by scheduled time
-            let matches = res.data.sort((a,b) => (a.time - b.time));
+            let matches = res.data.sort((a, b) => (a.time - b.time));
 
             // hide qualifing matches once quarter finals start
-            let matchCompLevels = matches.map((m)=>(m.comp_level));
+            let matchCompLevels = matches.map((m) => (m.comp_level));
             this.isFinals = matchCompLevels.includes("qf") || matchCompLevels.includes("sf");
             if (this.isFinals) {
               matches = matches.filter((m) => (m.comp_level !== "qm"));
@@ -408,7 +409,7 @@
             }
 
             this.teamCount = res.data.qual.num_teams;
-            this.ourRank   = res.data.qual.ranking.rank;
+            this.ourRank = res.data.qual.ranking.rank;
 
             if (res.data.next_match_key) {
               let nextMatchRes = await tba.get(`/match/${res.data.next_match_key}/simple`);
@@ -424,9 +425,9 @@
               if (this.nextMatch.time > this.nextMatch.predicted_time) {
                 this.nextMatch.countdownTo = "scheduled";
                 countdownTo = this.nextMatch.time;
-              }              
+              }
 
-              this.nextMatch.countdown = (countdownTo*1000 - Date.now());
+              this.nextMatch.countdown = (countdownTo * 1000 - Date.now());
               if (this.nextMatch.countdown < 0) {
                 console.log("Countdown is zero");
                 this.nextMatch.countdown = 0;
@@ -447,7 +448,7 @@
               this.nextMatch = {};
             }
           });
-        } catch(e) {
+        } catch (e) {
           // we expect that sometimes the debounce will happen before the user has completed
           // entering the team
         }
@@ -463,16 +464,16 @@
         }
         let events = this.events.map(event => ({
           value: event.key,
-          text : event.name
+          text: event.name
         }));
-        events.sort((a,b)=>(a.text.localeCompare(b.text)));
+        events.sort((a, b) => (a.text.localeCompare(b.text)));
         events.unshift({ value: null, text: 'Please select an event' });
         return events;
         // <option v-for="event in events" name="event.key">{{ event.name }}</option>
       },
-      eventName: function() {
+      eventName: function () {
         // console.log("options", this.eventOptions, this.event);
-        let events = this.eventOptions.filter(e=>(e.value==this.event));
+        let events = this.eventOptions.filter(e => (e.value == this.event));
         // console.log("events", events);
         if (events.length) {
           return events[0].text
@@ -481,7 +482,7 @@
       }
     },
     watch: {
-      event: function(value, oldValue) {
+      event: function (value, oldValue) {
         console.log(`Event changed from ${oldValue} to ${value}`);
         localStorage.setItem("eventKey", value);
 
@@ -494,9 +495,9 @@
         // load the list of events for this year
         // used for the event dropdown
         tba.get(`/events/${new Date().getFullYear()}`).then((res) => {
-          this.events= res.data;
+          this.events = res.data;
         });
-        
+
         this.updateData();
       }
     }
@@ -506,10 +507,21 @@
 </script>
 
 <style scoped>
-  .rounded-top-left { border-top-left-radius: .25rem !important; }
-  .rounded-top-right { border-top-right-radius: .25rem !important; }
-  .rounded-bottom-left { border-bottom-left-radius: .25rem !important; }
-  .rounded-bottom-right { border-bottom-right-radius: .25rem !important; }
+  .rounded-top-left {
+    border-top-left-radius: .25rem !important;
+  }
+
+  .rounded-top-right {
+    border-top-right-radius: .25rem !important;
+  }
+
+  .rounded-bottom-left {
+    border-bottom-left-radius: .25rem !important;
+  }
+
+  .rounded-bottom-right {
+    border-bottom-right-radius: .25rem !important;
+  }
 
   .smaller {
     font-size: 70%;
@@ -523,31 +535,31 @@
   .myteam {
     font-weight: bold;
     text-decoration: underline;
-/*     font-size: 125%; */
+    /*     font-size: 125%; */
   }
 
   .fb-header {
-  	display: flex;
-  	flex-direction: row;
-  	flex-wrap: nowrap;
-  	justify-content: space-evenly;
-  	align-items: center;
-  	align-content: center;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: center;
+    align-content: center;
   }
 
   .fb-page-container {
     display: flex;
-  	flex-direction: row;
-  	flex-wrap: nowrap;
-  	justify-content: space-evenly;
-  	align-items: flex-start;
-  	align-content: center;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-evenly;
+    align-items: flex-start;
+    align-content: center;
   }
 
   .sponsors {
     display: flex;
-    justify-content: center; 
-    align-items: center; 
+    justify-content: center;
+    align-items: center;
     flex-direction: column;
     padding-right: 1rem;
   }
