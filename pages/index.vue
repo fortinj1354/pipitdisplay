@@ -2,8 +2,8 @@
   <div>
     <div style="background: grey; padding-bottom: 10px; padding-top: 10px;">
       <div class="fb-header">
-        <h1 class="text-center" style="font-size: 5rem; flex: 4;">Walton Robotics Team 2974</h1>
-        <img src="~/assets/wrtlogo.png" style="height: 128px; flex: 1;" />
+        <h1 class="text-center" style="font-size: 5rem;">Walton Robotics Team 2974</h1>
+        <img src="~/assets/wrtlogo.png" style="height: 128px;" />
       </div>
     </div>
     <div class="fb-page-container">
