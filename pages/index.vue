@@ -163,7 +163,7 @@
         <img src="~/assets/carrier.svg" />
         <img src="~/assets/automated-logic.svg" />
         <img src="~/assets/difco.webp" />
-        <img src="~/assets/ccsd-removebg.png" />
+        <img src="~/assets/ccsd.webp" />
       </div>
     </div>
   </div>
