@@ -118,6 +118,7 @@
                         <th class="font-weight-bold bg-secondary">Rank</th>
                         <th class="font-weight-bold bg-secondary">Team</th>
                         <th class="bg-secondary">RP</th>
+                        <th class="bg-secondary">RP Avg.</th>
                         <th class="bg-secondary">W-L-T</th>
                         <th class="bg-secondary">Played</th>
                       </tr>
@@ -126,6 +127,7 @@
                       <tr v-for="team in rankings.slice(0,8)" :class="{'bg-danger': isMyTeam(team.team_key)}">
                         <td>{{team.rank}}</td>
                         <td :class="{myteam: isMyTeam(team.team_key)}">{{team.team_key.replace('frc', '')}}</td>
+                        <td>{{team.extra_stats[0]}}</td>
                         <td>{{team.sort_orders[0]}}</td>
                         <td>{{team.record.wins}}-{{team.record.losses}}-{{team.record.ties}}</td>
                         <td>{{team.matches_played}}</td>
