@@ -567,6 +567,7 @@
     display: flex;
     flex-direction: column;
     min-width: 0; /* Prevents flex items from overflowing */
+    background: grey;
   }
 
   .sponsors-wrapper {
@@ -580,7 +581,7 @@
   }
 
   .sponsors-wrapper img {
-    width: 80%;
+    width: 90%;
     height: auto;
     object-fit: contain;
   }
