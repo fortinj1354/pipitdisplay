@@ -581,8 +581,9 @@
   }
 
   .sponsors-wrapper img {
-    width: 90%;
+    width: 100%;
     height: auto;
+    max-height: 15%;
     object-fit: contain;
   }
 
