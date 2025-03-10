@@ -164,6 +164,7 @@
         <img src="~/assets/novelis.png" />
         <img src="~/assets/carrier.svg" />
         <img src="~/assets/automated-logic.svg" />
+        <img src="~/assets/ups.svg" />
         <img src="~/assets/difco.webp" />
         <img src="~/assets/ccsd.webp" />
       </div>
@@ -537,7 +538,6 @@
   .myteam {
     font-weight: bold;
     text-decoration: underline;
-    /*     font-size: 125%; */
   }
 
   .fb-header {
@@ -586,6 +586,4 @@
     max-height: 15%;
     object-fit: contain;
   }
-
-  /* Remove or comment out the old .fb-page-container and .sponsors styles */
 </style>
