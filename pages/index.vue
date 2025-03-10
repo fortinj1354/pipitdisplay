@@ -551,13 +551,15 @@
 
   .page-container {
     display: flex;
-    height: 100%;
+    height: 100vh;
     width: 100%;
+    overflow: hidden
   }
 
   .main-content {
     flex: 4;
     overflow-y: auto;
+    height: 100vh;
     min-width: 0; /* Prevents flex items from overflowing */
   }
 
@@ -566,6 +568,7 @@
     background-color: white;
     display: flex;
     flex-direction: column;
+    height: 100vh;
     min-width: 0; /* Prevents flex items from overflowing */
     background: grey;
   }
