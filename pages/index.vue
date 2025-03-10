@@ -551,7 +551,7 @@
 
   .page-container {
     display: flex;
-    height: 100%;
+    min-height: 100vh;
     width: 100%;
   }
 
@@ -571,6 +571,7 @@
   }
 
   .sponsors-wrapper {
+    position: sticky;
     top: 0;
     display: flex;
     flex-direction: column;
